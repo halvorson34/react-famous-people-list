@@ -9,6 +9,13 @@ class FamousSection extends Component {
       name: "",
       role: "",
     },
+
+    peopleList: [
+      {
+        name: "",
+        role: "",
+      },
+    ],
   };
 
   handleChangeFor = (event, propertyName) => {
