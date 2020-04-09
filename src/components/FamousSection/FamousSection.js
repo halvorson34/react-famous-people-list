@@ -23,6 +23,13 @@ class FamousSection extends Component {
   addPerson = (event) => {
     event.preventDefault();
     console.log(`The famous person is `, this.state.famousPerson);
+    // clearing form inputs
+    const newStateConfig = {
+      famousPerson: {
+        name: "",
+        role: "",
+      },
+    };
   };
 
   render() {
@@ -45,7 +52,7 @@ class FamousSection extends Component {
           {this.state.famousPerson.name} is famous for "
           {this.state.famousPerson.role}".
         </p>
-        <ul>{/* The list should go here. */}</ul>
+        <ul>{/* list goes here */}</ul>
       </section>
     );
   }
