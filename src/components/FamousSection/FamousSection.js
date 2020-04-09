@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "./FamousSection.css";
 
-const people = [];
-
 class FamousSection extends Component {
   state = {
     famousPerson: {
@@ -36,10 +34,30 @@ class FamousSection extends Component {
         name: "",
         role: "",
       },
+
+      // update people list
+      peopleList: [
+        ...this.state.peopleList,
+        {
+          ...this.state.famousPerson,
+        },
+      ],
     };
+    // add famous person to the people list
+    this.setState(newStateConfig, () => {
+      console.log("New State:", this.state.peopleList);
+    });
   };
 
   render() {
+    const peopleElements = this.state.peopleList.map((item, index) => {
+      return (
+        <li key={index}>
+          {item.name} is famous for {item.role}.
+        </li>
+      );
+    });
+
     return (
       <section className="new-person-section">
         <form onSubmit={this.addPerson}>
@@ -59,7 +77,7 @@ class FamousSection extends Component {
           {this.state.famousPerson.name} is famous for "
           {this.state.famousPerson.role}".
         </p>
-        <ul>{/* list goes here */}</ul>
+        <ul>{peopleElements}</ul>
       </section>
     );
   }
