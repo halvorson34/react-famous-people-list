@@ -8,12 +8,7 @@ class FamousSection extends Component {
       role: "",
     },
 
-    peopleList: [
-      {
-        name: "",
-        role: "",
-      },
-    ],
+    people: [],
   };
 
   handleChangeFor = (event, propertyName) => {
@@ -27,30 +22,32 @@ class FamousSection extends Component {
 
   addPerson = (event) => {
     event.preventDefault();
+    //clear input fields
+    event.target.reset();
     console.log(`The famous person is `, this.state.famousPerson);
-    // clearing form inputs
+
     const newStateConfig = {
       famousPerson: {
         name: "",
         role: "",
       },
 
-      // update people list
-      peopleList: [
-        ...this.state.peopleList,
+      // update people
+      people: [
+        ...this.state.people,
         {
           ...this.state.famousPerson,
         },
       ],
     };
-    // add famous person to the people list
+    // add famous person to the people array
     this.setState(newStateConfig, () => {
-      console.log("New State:", this.state.peopleList);
+      console.log("New State:", this.state.people);
     });
   };
 
   render() {
-    const peopleElements = this.state.peopleList.map((item, index) => {
+    const peopleElements = this.state.people.map((item, index) => {
       return (
         <li key={index}>
           {item.name} is famous for {item.role}.
@@ -73,11 +70,7 @@ class FamousSection extends Component {
           />
           <button type="submit">Done</button>
         </form>
-        <p>
-          {this.state.famousPerson.name} is famous for "
-          {this.state.famousPerson.role}".
-        </p>
-        <ul>{peopleElements}</ul>
+        <p>{peopleElements}</p>
       </section>
     );
   }
